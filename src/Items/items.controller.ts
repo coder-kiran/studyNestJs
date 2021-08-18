@@ -3,6 +3,7 @@
 // returning  responses to client
 
 import { Controller, Get, Post } from '@nestjs/common';
+import { ItemsService } from './items.service';
 
 // This is a decorator.( eg:- @Controller)
 // This just extends(inherits) functionality of classes & methods
@@ -14,6 +15,7 @@ import { Controller, Get, Post } from '@nestjs/common';
 
 @Controller('items')
 export class ItemsController {
+    constructor(private readonly itemFromService: ItemsService){}
     
     @Get('details')         // http://localhost:3000/items/details
     getItem(): string{
@@ -23,6 +25,11 @@ export class ItemsController {
     @Post('add')          //  http://localhost:3000/items/add
     postItem(): string{
         return 'succesfully posted'
+    }
+
+    @Get('itemfromservice')             
+    serviceItem(): string{
+        return this.itemFromService.getItem();
     }
 
 }
