@@ -5,6 +5,8 @@
 import { Controller, Get, Post } from '@nestjs/common';
 import { ItemsService } from './items.service';
 
+import {CreateUserDto} from '../Items/Dto/create-user.dto'
+
 // This is a decorator.( eg:- @Controller)
 // This just extends(inherits) functionality of classes & methods
 // in a  clean way. 
@@ -27,7 +29,7 @@ export class ItemsController {
         return 'succesfully posted'
     }
 
-    @Get('itemfromservice')             
+    @Get('itemfromservice')      // http://localhost:3000/items/itemfromservice =>(output) rice
     serviceItem(): string{
         return this.itemFromService.getItem();
     }
